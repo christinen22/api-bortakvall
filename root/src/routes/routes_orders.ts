@@ -2,29 +2,28 @@ import express from 'express'
 import { index, show, store, update, destroy } from '../controllers/controllers_orders'
 const router = express.Router()
 
-/**
- * GET /resource
- */
-router.get('/', index)
+// Get all products
+
+router.get('/products', index)
 
 /**
- * GET /resource/:resourceId
+ * GET one product
  */
-router.get('/:resourceId', show)
+router.get('/products/:productId', show)
 
 /**
- * POST /resource
+ * POST product
  */
-router.post('/', store)
+router.post('/products', store)
 
 /**
  * PATCH /resource/:resourceId
  */
-router.patch('/:resourceId', update)
+router.patch('/:productsId', update)
 
 /**
  * DELETE /resource/:resourceId
  */
-router.delete('/:resourceId', destroy)
+router.delete('/:productsId', destroy)
 
 export default router
