@@ -15,24 +15,21 @@ model Product {
   on_sale             Boolean
   images              Json?      @default("{}")
   stock_status        String
-  stock_quantity      Int
-  //order               Order[]
+  stock_quantity      Int        @db.UnsignedInt
 
 }
 
 model Order {
   id                  Int        @id @default(autoincrement()) @db.UnsignedInt
-	order_date          DateTime
+	order_date          DateTime   @default(now())
 	customer_first_name String  
 	customer_last_name  String
 	customer_address    String
   customer_postcode   Int
 	customer_city       String
 	customer_email      String
-	customer_phone      String
-	order_total         Int
-	created_at          DateTime
-	updated_at          DateTime
-	//items               Product[]      
+	customer_phone      String?
+	order_total         Int       @db.UnsignedInt
+	order_items         Json      @default("{}")     
 }
 
