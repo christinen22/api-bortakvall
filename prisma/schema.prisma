@@ -7,25 +7,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Book {
-  id           Int        @id @default(autoincrement()) @db.UnsignedInt
-  title        String
-  pages        Int        @db.UnsignedInt
-  isbn         String?
-  authors      Author[]
-  publisherId  Int        @db.UnsignedInt
-  publisher    Publisher  @relation(fields: [publisherId], references: [id])
-  cover        Json?      @default("{}")
+model products {
+  id                  Int        @id @default(autoincrement()) @db.UnsignedInt
+  name                String
+  description         String       
+  price               Int
+  on_sale             Boolean
+  images              Json?      @default("{}")
+  stock_status        String
+  stock_quantity      Int
+
 }
 
-model Author {
-  id         Int        @id @default(autoincrement()) @db.UnsignedInt
-  name       String
-  books      Book[]
+model orders {
+  id                  Int        @id @default(autoincrement()) @db.UnsignedInt
+	order_date          DateTime
+	customer_first_name String  
+	customer_last_name  String
+	customer_address    String
+  customer_postcode   Int
+	customer_city       String
+	customer_email      String
+	customer_phone      String
+	order_total         Int
+	created_at          DateTime
+	updated_at          DateTime
+	items               Json      @default("{}")
 }
 
-model Publisher {
-  id         Int        @id @default(autoincrement()) @db.UnsignedInt
-  name       String
-  books      Book[]
-}

@@ -1,9 +1,13 @@
+/*
+
 import prisma from '../src/prisma'
 
 async function main() {
 	/**
 	 * Publishers
 	 */
+
+/*
 	const hutchinson = await prisma.publisher.upsert({
 		where: { id: 1 },
 		update: {},
@@ -25,6 +29,8 @@ async function main() {
 	/**
 	 * Authors
 	 */
+
+/*
 	const clarke = await prisma.author.upsert({
 		where: { id: 1 },
 		update: {},
@@ -52,6 +58,8 @@ async function main() {
 	/**
 	 * Books
 	 */
+
+/*
 	const odessey = await prisma.book.upsert({
 		where: { id: 1 },
 		update: {},
@@ -123,3 +131,5 @@ main()
 		await prisma.$disconnect()
 		process.exit(1)
 	})
+
+*/
