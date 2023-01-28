@@ -80,14 +80,3 @@ export const store = async (req: Request, res: Response) => {
 }
 
 
-/**
- * Update a resource
- */
-export const update = async (req: Request, res: Response) => {
-}
-
-/**
- * Delete a resource
- */
-export const destroy = async (req: Request, res: Response) => {
-}
