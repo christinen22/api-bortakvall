@@ -4,13 +4,13 @@ import { index, show, store } from '../controllers/order_controllers'
 const router = express.Router()
 
 // Get all orders
-router.get('/orders', index)
+router.get('/', index)
 
 // Get one order
 router.get('/:orderId', show)
 
 // Post orders
-router.post('/orders', store)
+router.post('/', store)
 
 
 

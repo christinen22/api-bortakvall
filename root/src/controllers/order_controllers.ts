@@ -64,10 +64,7 @@ export const store = async (req: Request, res: Response) => {
 				customer_email: req.body.customer_email,      
 				customer_phone: req.body.customer_phone,      
 				order_total: req.body.order_total,         
-				created_at: req.body.created_at,          
-				updated_at: req.body.updated_at,         
-				items: req.body.items 
-			
+				//order_items: req.body.order_items 
 			}
 		})
 
