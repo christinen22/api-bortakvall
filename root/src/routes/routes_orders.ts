@@ -1,6 +1,6 @@
 import express from 'express'
 import { body } from 'express-validator'
-import { index, show, store } from '../controllers/controllers_orders'
+import { index, show, store } from '../controllers/order_controllers'
 const router = express.Router()
 
 // Get all orders

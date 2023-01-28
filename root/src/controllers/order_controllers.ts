@@ -3,13 +3,13 @@ import Debug from 'debug'
 import prisma from '../prisma'
 
 // Create a new debug instance
-const debug = Debug('prisma-products:controllers_products')
+const debug = Debug('prisma-orders:order_controllers')
 
 // Get all orders
 export const index = async (req: Request, res: Response) => {
     {
         try {
-            const order = await prisma.orders.findMany()
+            const order = await prisma.order.findMany()
             res.send(order)
     
         } catch (err) {
@@ -28,7 +28,7 @@ export const show = async (req: Request, res: Response) => {
     const orderId = Number(req.params.orderId)
 
 	try {
-		const order = await prisma.orders.findUniqueOrThrow({
+		const order = await prisma.order.findUniqueOrThrow({
 			where: {
 				id: orderId,
 			}
@@ -53,7 +53,7 @@ export const show = async (req: Request, res: Response) => {
 //
 export const store = async (req: Request, res: Response) => {
 	try {
-		const order = await prisma.orders.create({
+		const order = await prisma.order.create({
 			data: {
 				order_date: req.body.order_date,
 				customer_first_name: req.body.customer_first_name,  

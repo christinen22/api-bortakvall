@@ -16,7 +16,7 @@ model Product {
   images              Json?      @default("{}")
   stock_status        String
   stock_quantity      Int
-  order               Order[]
+  //order               Order[]
 
 }
 
@@ -33,6 +33,6 @@ model Order {
 	order_total         Int
 	created_at          DateTime
 	updated_at          DateTime
-	items               Product[]      
+	//items               Product[]      
 }
 

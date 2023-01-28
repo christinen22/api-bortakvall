@@ -1,6 +1,6 @@
 import express from 'express'
 import { body } from 'express-validator'
-import { index, show, store, update, destroy } from '../controllers/controllers_products'
+import { index, show, store } from '../controllers/product_controller'
 const router = express.Router()
 
 // Get all products
@@ -17,14 +17,6 @@ router.get('/:productId', show)
  */
 router.post('/', store)
 
-/**
- * PATCH /resource/:resourceId
- */
-router.patch('/:productsId', update)
 
-/**
- * DELETE /resource/:resourceId
- */
-router.delete('/:productsId', destroy)
 
 export default router
