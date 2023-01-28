@@ -7,14 +7,14 @@ const router = express.Router()
 
 router.get('/', index)
 
-/**
- * GET one product
- */
+
+// Get one product
+ 
 router.get('/:productId', show)
 
-/**
- * POST product
- */
+
+// Post product
+ 
 router.post('/', store)
 
 
