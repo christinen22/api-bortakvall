@@ -1,20 +1,30 @@
 import express from 'express'
+import { body } from 'express-validator'
 import { index, show, store, update, destroy } from '../controllers/controllers_products'
 const router = express.Router()
 
-// Get all orders
-router.get('/orders', index)
+// Get all products
 
-// Get one order
-router.get('/:orderId', show)
+router.get('/', index)
 
-// Post orders
-router.post('/orders', store)
+/**
+ * GET one product
+ */
+router.get('/:productId', show)
 
-// Update order
-router.patch('/:orderId', update)
+/**
+ * POST product
+ */
+router.post('/', store)
 
-// Delete order
-router.delete('/:orderId', destroy)
+/**
+ * PATCH /resource/:resourceId
+ */
+router.patch('/:productsId', update)
+
+/**
+ * DELETE /resource/:resourceId
+ */
+router.delete('/:productsId', destroy)
 
 export default router
