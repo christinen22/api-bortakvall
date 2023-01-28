@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model products {
+model Product {
   id                  Int        @id @default(autoincrement()) @db.UnsignedInt
   name                String
   description         String       
@@ -16,10 +16,11 @@ model products {
   images              Json?      @default("{}")
   stock_status        String
   stock_quantity      Int
+  order               Order[]
 
 }
 
-model orders {
+model Order {
   id                  Int        @id @default(autoincrement()) @db.UnsignedInt
 	order_date          DateTime
 	customer_first_name String  
@@ -32,6 +33,6 @@ model orders {
 	order_total         Int
 	created_at          DateTime
 	updated_at          DateTime
-	items               Json      @default("{}")
+	items               Product[]      
 }
 
