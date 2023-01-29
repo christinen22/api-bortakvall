@@ -15,7 +15,14 @@ router.get('/:productId', show)
 
 // Post product
  
-router.post('/', store)
+router.post('/', [
+    body('name').isString(),
+    body('description').isString(),
+    body('price').isInt().isLength({ min: 1 }),
+    body('images').isJSON(),
+    body('stock_status').isString(),
+    body('stock_quantity').isInt().isLength({ min: 0 })
+], store)
 
 
 

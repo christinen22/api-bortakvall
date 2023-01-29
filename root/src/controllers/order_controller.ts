@@ -1,5 +1,6 @@
-import { Request, Response } from 'express'
 import Debug from 'debug'
+import { Request, Response } from 'express'
+import { validationResult } from 'express-validator'
 import prisma from '../prisma'
 
 // Create a new debug instance
