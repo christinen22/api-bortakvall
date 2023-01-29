@@ -3,7 +3,7 @@ import Debug from 'debug'
 import prisma from '../prisma'
 
 // Create a new debug instance
-const debug = Debug('api-bortakvall:order_controller')
+const debug = Debug('root:order_controller')
 
 // Get all orders
 export const index = async (req: Request, res: Response) => {
