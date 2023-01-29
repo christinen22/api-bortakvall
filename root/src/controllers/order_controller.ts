@@ -80,3 +80,27 @@ export const store = async (req: Request, res: Response) => {
 
 }
 
+//
+// Link product to order
+//
+export const addItem = async (req: Request, res: Response) => {
+	try {
+		const result = await prisma.order.update({
+			where: {
+				id: Number(req.params.orderId),
+			},
+			data: {
+				order_items: {
+					connect: {
+						id: req.body.productId,
+					}
+				}
+			},
+		})
+		res.status(201).send(result)
+	} catch (err) {
+		debug("Error thrown when adding product %o to an order %o: %o", req.body.productId, req.params.orderId, err)
+		res.status(500).send({ message: "Something went wrong" })
+	}
+}
+
