@@ -25,7 +25,7 @@ model Order {
 	customer_first_name String  
 	customer_last_name  String
 	customer_address    String
-  customer_postcode   Int
+  customer_postcode   String
 	customer_city       String
 	customer_email      String
 	customer_phone      String?
