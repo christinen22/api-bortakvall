@@ -53,6 +53,15 @@ export const show = async (req: Request, res: Response) => {
 //Create an order
 //
 export const store = async (req: Request, res: Response) => {
+
+	// Check validation
+	const validationErrors = validationResult (req)
+	if(!validationErrors.isEmpty()) {
+		return res.status(400).send({
+			status: "fail",
+			data: validationErrors.array()
+		})
+	}
 	try {
 		const order = await prisma.order.create({
 			data: {
