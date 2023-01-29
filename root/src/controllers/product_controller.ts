@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 import prisma from '../prisma'
 
 // Create a new debug instance
-const debug = Debug('prisma-products:product_controller')
+const debug = Debug('api-bortakvall:product_controller')
 
 //
 // Get all products
