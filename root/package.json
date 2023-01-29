@@ -1,10 +1,10 @@
 {
-  "name": "05-prisma-books",
+  "name": "root",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "cross-env DEBUG=prisma-books:* nodemon server.ts",
+    "dev": "cross-env DEBUG=prisma-products:* nodemon server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "prisma": {
