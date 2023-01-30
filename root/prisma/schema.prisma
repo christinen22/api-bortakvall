@@ -16,8 +16,12 @@ model Product {
   images              Json?      @default("{}")
   stock_status        String
   stock_quantity      Int        @db.UnsignedInt
+  order_id            Int?        @db.UnsignedInt
+  orders              Order?      @relation(fields: [order_id], references: [id])
 
 }
+
+
 
 model Order {
   id                  Int        @id @default(autoincrement()) @db.UnsignedInt
@@ -30,6 +34,7 @@ model Order {
 	customer_email      String
 	customer_phone      String?
 	order_total         Int       @db.UnsignedInt
-	order_items         Json      @default("{}")     
+	order_items         Product[] 
 }
+
 
