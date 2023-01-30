@@ -76,7 +76,6 @@ export const store = async (req: Request, res: Response) => {
 				images: req.body.images,
 				stock_status: req.body.stock_status,
 				stock_quantity: req.body.stock_quantity,
-				order_id: req.body.order_id
 			}
 		})
 
