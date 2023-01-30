@@ -7,7 +7,7 @@ import orders from './order_routes'
 const router = express.Router()
 
 // List of allowed origins (CORS)
-const allowedOrigins = ['http://localhost:3003'];
+const allowedOrigins = ['http://localhost:5173'];
 
 // Options to pass into .use(cors)
 const options: cors.CorsOptions = {

@@ -19,7 +19,7 @@ router.post('/', [
     body('name').isString(),
     body('description').isString(),
     body('price').isInt().isLength({ min: 1 }),
-    body('images').isJSON(),
+    body('images').isString,
     body('stock_status').isString(),
     body('stock_quantity').isInt().isLength({ min: 0 })
 ], store)

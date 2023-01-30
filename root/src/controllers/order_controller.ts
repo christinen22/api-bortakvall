@@ -8,6 +8,7 @@ const debug = Debug('root:order_controller')
 
 // Get all orders
 export const index = async (req: Request, res: Response) => {
+
     {
         try {
             const order = await prisma.order.findMany()
@@ -32,7 +33,11 @@ export const show = async (req: Request, res: Response) => {
 		const order = await prisma.order.findUniqueOrThrow({
 			where: {
 				id: orderId,
+			},
+			include: {
+				order_items: true
 			}
+			
 
 		})
 
@@ -73,9 +78,9 @@ export const store = async (req: Request, res: Response) => {
 				customer_city: req.body.customer_city,       
 				customer_email: req.body.customer_email,      
 				customer_phone: req.body.customer_phone,      
-				order_total: req.body.order_total,         
-				order_items: req.body.order_items 
-			}
+				order_total: req.body.order_total,     
+				order_items: req.body.order_items
+			},
 		})
 
 		res.send({
@@ -93,24 +98,35 @@ export const store = async (req: Request, res: Response) => {
 //
 // Link product to order
 //
-export const addItem = async (req: Request, res: Response) => {
+export const orderItem = async (req: Request, res: Response) => {
 	try {
 		const result = await prisma.order.update({
 			where: {
 				id: Number(req.params.orderId),
 			},
 			data: {
+	
 				order_items: {
 					connect: {
-						id: req.body.productId,
-					}
+					id: Number(req.params.productId),
 				}
+			}
 			},
+			include: {
+				order_items: true,
+				
+			}
+
+	
+		
 		})
 		res.status(201).send(result)
 	} catch (err) {
 		debug("Error thrown when adding product %o to an order %o: %o", req.body.productId, req.params.orderId, err)
 		res.status(500).send({ message: "Something went wrong" })
-	}
+	
+
+
+}
 }
 
