@@ -5,7 +5,9 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+  relationMode = "foreignKeys"
 }
+
 
 model Product {
   id                  Int        @id @default(autoincrement()) @db.UnsignedInt
@@ -16,13 +18,8 @@ model Product {
   images              Json?      @default("{}")
   stock_status        String
   stock_quantity      Int        @db.UnsignedInt
-  order_id            Int?        @db.UnsignedInt
-  orders              Order?      @relation(fields: [order_id], references: [id])
-
+  order_items         Order_items[]
 }
-
-
-
 model Order {
   id                  Int        @id @default(autoincrement()) @db.UnsignedInt
 	order_date          DateTime   @default(now())
@@ -34,7 +31,18 @@ model Order {
 	customer_email      String
 	customer_phone      String?
 	order_total         Int       @db.UnsignedInt
-	order_items         Product[] 
+	order_items         Order_items[]
+
 }
 
+model Order_items {
+  product_id          Int       @db.UnsignedInt
+  order_id            Int       @db.UnsignedInt  
+  order               Order     @relation(fields: [order_id], references: [id])
+  product             Product   @relation(fields: [product_id], references: [id])
+  qty                 Int
+  item_price          Int
+  item_total          Int
 
+  @@id([order_id, product_id])
+}
