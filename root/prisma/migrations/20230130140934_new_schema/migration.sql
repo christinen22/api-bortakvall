@@ -23,22 +23,25 @@ CREATE TABLE `Order` (
     `customer_city` VARCHAR(191) NOT NULL,
     `customer_email` VARCHAR(191) NOT NULL,
     `customer_phone` VARCHAR(191) NULL,
-    `order_total` INTEGER UNSIGNED NOT NULL,
+    `order_total` INTEGER UNSIGNED NULL,
+    `product_id` INTEGER UNSIGNED NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `_OrderToProduct` (
-    `A` INTEGER UNSIGNED NOT NULL,
-    `B` INTEGER UNSIGNED NOT NULL,
+CREATE TABLE `Order_items` (
+    `order_id` INTEGER NOT NULL,
+    `product_id` INTEGER NOT NULL,
+    `qty` INTEGER NOT NULL,
+    `item_price` INTEGER NOT NULL,
+    `item_total` INTEGER NOT NULL,
 
-    UNIQUE INDEX `_OrderToProduct_AB_unique`(`A`, `B`),
-    INDEX `_OrderToProduct_B_index`(`B`)
+    PRIMARY KEY (`order_id`, `product_id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `_OrderToProduct` ADD CONSTRAINT `_OrderToProduct_A_fkey` FOREIGN KEY (`A`) REFERENCES `Order`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Order_items` ADD CONSTRAINT `Order_items_order_id_fkey` FOREIGN KEY (`order_id`) REFERENCES `Order`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `_OrderToProduct` ADD CONSTRAINT `_OrderToProduct_B_fkey` FOREIGN KEY (`B`) REFERENCES `Product`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Order_items` ADD CONSTRAINT `Order_items_product_id_fkey` FOREIGN KEY (`product_id`) REFERENCES `Product`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

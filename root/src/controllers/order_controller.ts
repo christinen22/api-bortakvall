@@ -79,7 +79,6 @@ export const store = async (req: Request, res: Response) => {
 				customer_email: req.body.customer_email,      
 				customer_phone: req.body.customer_phone,      
 				order_total: req.body.order_total,     
-				order_items: req.body.order_items
 			},
 		})
 
@@ -94,6 +93,11 @@ export const store = async (req: Request, res: Response) => {
 	}
 
 }
+
+
+
+
+/*
 
 //
 // Link product to order
@@ -130,3 +134,4 @@ export const orderItem = async (req: Request, res: Response) => {
 }
 }
 
+*/
