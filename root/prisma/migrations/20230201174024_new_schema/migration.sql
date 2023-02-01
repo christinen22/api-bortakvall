@@ -2,10 +2,10 @@
 CREATE TABLE `Product` (
     `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
-    `description` VARCHAR(191) NOT NULL,
+    `description` TEXT NOT NULL,
     `price` INTEGER NOT NULL,
     `on_sale` BOOLEAN NOT NULL,
-    `images` JSON NULL,
+    `images` JSON NOT NULL,
     `stock_status` VARCHAR(191) NOT NULL,
     `stock_quantity` INTEGER UNSIGNED NOT NULL,
 
@@ -23,16 +23,15 @@ CREATE TABLE `Order` (
     `customer_city` VARCHAR(191) NOT NULL,
     `customer_email` VARCHAR(191) NOT NULL,
     `customer_phone` VARCHAR(191) NULL,
-    `order_total` INTEGER UNSIGNED NULL,
-    `product_id` INTEGER UNSIGNED NULL,
+    `order_total` INTEGER UNSIGNED NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `Order_items` (
-    `order_id` INTEGER NOT NULL,
-    `product_id` INTEGER NOT NULL,
+    `product_id` INTEGER UNSIGNED NOT NULL,
+    `order_id` INTEGER UNSIGNED NOT NULL,
     `qty` INTEGER NOT NULL,
     `item_price` INTEGER NOT NULL,
     `item_total` INTEGER NOT NULL,
