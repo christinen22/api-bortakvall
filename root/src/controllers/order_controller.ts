@@ -11,7 +11,11 @@ export const index = async (req: Request, res: Response) => {
 
     {
         try {
-            const order = await prisma.order.findMany()
+            const order = await prisma.order.findMany({
+				include: {
+					order_items: true,
+				}
+			})
             res.send(order)
     
         } catch (err) {
@@ -22,6 +26,7 @@ export const index = async (req: Request, res: Response) => {
         }
     }
 }
+
 
 
 // Get a single order
@@ -35,9 +40,8 @@ export const show = async (req: Request, res: Response) => {
 				id: orderId,
 			},
 			include: {
-				order_items: true
-			}
-			
+				order_items: true,
+			},
 
 		})
 
@@ -68,6 +72,7 @@ export const store = async (req: Request, res: Response) => {
 		})
 	}
 	try {
+
 		const order = await prisma.order.create({
 			data: {
 				order_date: req.body.order_date,
@@ -78,8 +83,12 @@ export const store = async (req: Request, res: Response) => {
 				customer_city: req.body.customer_city,       
 				customer_email: req.body.customer_email,      
 				customer_phone: req.body.customer_phone,      
-				order_total: req.body.order_total,     
+				order_total: req.body.order_total,    
+				order_items: {
+					create: req.body.order_items
+				}
 			},
+		
 		})
 
 		res.send({
@@ -103,27 +112,19 @@ export const store = async (req: Request, res: Response) => {
 // Link product to order
 //
 export const orderItem = async (req: Request, res: Response) => {
+    const orderId = Number(req.params.orderId)
+
 	try {
-		const result = await prisma.order.update({
+		const result = await prisma.product.findUniqueOrThrow({
 			where: {
-				id: Number(req.params.orderId),
-			},
-			data: {
-	
-				order_items: {
-					connect: {
-					id: Number(req.params.productId),
-				}
-			}
+				id: orderId,
 			},
 			include: {
-				order_items: true,
-				
-			}
+				order_items: true
+			}, 
 
-	
-		
 		})
+	
 		res.status(201).send(result)
 	} catch (err) {
 		debug("Error thrown when adding product %o to an order %o: %o", req.body.productId, req.params.orderId, err)

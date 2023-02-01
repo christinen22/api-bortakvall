@@ -21,10 +21,10 @@ export default router
 
 
 /*[
-    body('customer_first_name').isString().isLength({ min: 2 }).withMessage('Minimum 2 characters'),
-    body('customer_last_name').isString().isLength({ min: 2 }).withMessage('Minimum 2 characters'),
+    body('customer_first_name').isString().bail().isLength({ min: 2 }).withMessage('Minimum 2 characters'),
+    body('customer_last_name').isString().bail().isLength({ min: 2 }).withMessage('Minimum 2 characters'),
     body('customer_address').isString().withMessage('Invalid address'),
-    body('customer_postcode').isString().isLength({ max: 6 }).withMessage('Invalid postcode'),
+    body('customer_postcode').isString().bail().isLength({ max: 6 }).withMessage('Invalid postcode'),
     body('customer_city').isString().withMessage('Invalid city'),
     body('customer_email').isEmail().withMessage('Has to be an e-mail'),
     body('customer_phone').isString(),
