@@ -12,9 +12,7 @@ export const index = async (req: Request, res: Response) => {
     {
         try {
             const order = await prisma.order.findMany({
-				include: {
-					order_items: true,
-				}
+			
 			})
             res.send(order)
     

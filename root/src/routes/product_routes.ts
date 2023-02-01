@@ -16,10 +16,10 @@ router.get('/:productId', show)
 // Post product
  
 router.post('/', [
-    body('name').isString(),
-    body('description').isString(),
-    body('price').isInt().bail().isLength({ min: 1 }),
-    body('images').isString,
+    body('name').isString().withMessage('Has to be a string'),
+    body('description').isString().withMessage('Has to be a string'),
+    body('price').isInt().isLength({ min: 1 }).withMessage('Has to be a integer, min 1'),
+    //body('images').isJSON().withMessage('Invalid format, JSON is required'),
     body('stock_status').isString(),
     body('stock_quantity').isInt().bail().isLength({ min: 0 })
 ], store)
