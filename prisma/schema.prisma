@@ -15,7 +15,7 @@ model Product {
   description         String    @db.Text    
   price               Int
   on_sale             Boolean
-  images              Json      @default("{}")
+  images              Json?      @default("{}")
   stock_status        String
   stock_quantity      Int        @db.UnsignedInt
   order_items         Order_items[]
