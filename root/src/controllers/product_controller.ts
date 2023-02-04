@@ -45,7 +45,7 @@ export const show = async (req: Request, res: Response) => {
 		})
 
 	} catch (err) {
-		console.error(err)
+		console.debug(err)
 		res.status(404).send({
 			message: "Not found",
 		})
@@ -85,7 +85,7 @@ export const store = async (req: Request, res: Response) => {
 		})
 
 	} catch (err) {
-		debug("Error thrown when creating a product %o: %o", req.body, err)
+		console.debug("Error thrown when creating a product %o: %o", req.body, err)
 		res.status(500).send({ status: "error", message: "Something went wrong" })
 	}
 }

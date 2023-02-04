@@ -17,7 +17,7 @@ export const index = async (req: Request, res: Response) => {
             res.send(order)
     
         } catch (err) {
-            console.error(err)
+            console.debug(err)
             res.status(500).send({
                 message: "Something went wrong querying the database.",
             })
@@ -49,7 +49,7 @@ export const show = async (req: Request, res: Response) => {
 		})
 
 	} catch (err) {
-		console.error(err)
+		console.debug(err)
 		res.status(404).send({
 			message: "Not found",
 		})
