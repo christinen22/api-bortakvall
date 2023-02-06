@@ -19,7 +19,7 @@ router.post('/', [
     body('customer_email').isEmail().withMessage('Has to be an e-mail'),
     body('customer_phone').isString(),
     body('order_total').isInt().isLength({ min: 1 }),
-    body('order_items').isLength({ min: 1 }),
+    body('order_items').notEmpty()
 ],  store)
 
 // Attach products to order
